@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -8,13 +9,14 @@ const port = process.env.PORT || 3002;
 const app = express();
 
 const mongocon = process.env.mongoCon;
-mongoose.connect('mongodb+srv://jawadeagleyeDB:mydbpassword@cluster1-nb35w.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology:true});
+mongoose.connect(mongocon, {useNewUrlParser: true,useUnifiedTopology:true});
 
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 const cors = require('cors');
 app.use(cors());
 
